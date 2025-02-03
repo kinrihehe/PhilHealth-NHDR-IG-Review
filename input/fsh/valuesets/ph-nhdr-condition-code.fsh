@@ -1,7 +1,7 @@
 ValueSet: ConditionCodeValueSet
 Id: ph-nhdr-condition-code
-Title: "Condition Code Value Set"
-Description: "A value set representing various condition codes for classification."
+Title: "Condition Code"
+Description: "various condition codes for classification."
 * $ConditionCodeSystem#Abrasion "Abrasion"
 * $ConditionCodeSystem#AnimalBite "Animal bite"
 * $ConditionCodeSystem#Avulsion "Avulsion"

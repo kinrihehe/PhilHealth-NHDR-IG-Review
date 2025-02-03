@@ -1,7 +1,7 @@
 ValueSet: ConditionVerificationStatusValueSet
 Id: ph-nhdr-condition-verification-status
-Title: "Condition Verification Status Value Set"
-Description: "A value set representing verification status codes for conditions, particularly for diseases like JE, measles, rubella, polio, and others."
+Title: "Condition Verification Status"
+Description: "verification status codes for conditions, particularly for diseases like JE, measles, rubella, polio, and others."
 * $ConditionVerificationStatusCodeSystem#Suspect "Suspect"
 * $ConditionVerificationStatusCodeSystem#Probable "Probable"
 * $ConditionVerificationStatusCodeSystem#Confirmed "Confirmed"

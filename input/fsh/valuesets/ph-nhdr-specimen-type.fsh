@@ -1,7 +1,7 @@
 ValueSet: SpecimenType
 Id: ph-nhdr-specimen-type
-Title: "Specimen Type Value Set"
-Description: "A value set representing various types of specimen sources."
+Title: "Specimen Type"
+Description: "various types of specimen sources."
 * $SpecimenTypeCodeSystem#Blood "Blood"
 * $SpecimenTypeCodeSystem#Serum "Serum"
 * $SpecimenTypeCodeSystem#DriedBloodSpot "Dried Blood Spot"

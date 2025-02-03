@@ -1,7 +1,7 @@
 ValueSet: ConditionCategoryValueSet
 Id: ph-nhdr-condition-category
-Title: "Condition Category Value Set"
-Description: "A value set representing various condition categories for classification."
+Title: "Condition Category"
+Description: "various condition categories for classification."
 * $ConditionCategoryCodeSystem#FlaccidFloppy "Flaccid/Floppy"
 * $ConditionCategoryCodeSystem#Spastic "Spastic"
 * $ConditionCategoryCodeSystem#Asthma "Asthma"

@@ -1,7 +1,7 @@
 ValueSet: ImmunizationReportOrigin
 Id: ph-nhdr-immunization-report-origin
-Title: "Immunization Report Origin Value Set"
-Description: "A value set representing the origin of immunization reports."
+Title: "Immunization Report Origin"
+Description: "the origin of immunization reports."
 * $ImmunizationReportOriginCodeSystem#VaccinationCard "Vaccination Card"
 * $ImmunizationReportOriginCodeSystem#Logsheet "Logsheet"
 * $ImmunizationReportOriginCodeSystem#ByRecall "By recall"

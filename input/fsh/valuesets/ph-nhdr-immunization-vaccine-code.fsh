@@ -1,7 +1,7 @@
 ValueSet: ImmunizationVaccineCode
 Id: ph-nhdr-immunization-vaccine-code
-Title: "Immunization Vaccine Code Value Set"
-Description: "A value set representing codes for different vaccines used in immunization."
+Title: "Immunization Vaccine Code"
+Description: "codes for different vaccines used in immunization."
 * $ImmunizationVaccineCodeSystem#JE "Japanese Encephalitis (JE)"
 * $ImmunizationVaccineCodeSystem#Penta-Hib "Pentavalent-Haemophilus influenzae type B (Penta-Hib)"
 * $ImmunizationVaccineCodeSystem#Measles "Measles"

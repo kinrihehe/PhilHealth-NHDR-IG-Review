@@ -1,7 +1,7 @@
 ValueSet: SpecimenProcessingProcedure
 Id: ph-nhdr-specimen-processing-procedure
-Title: "Specimen Processing Procedure Value Set"
-Description: "A value set representing various specimen processing procedures."
+Title: "Specimen Processing Procedure"
+Description: "various specimen processing procedures."
 * $SpecimenProcessingProcedureCodeSystem#ELISA "Enzyme-linked Immunoassay (ELISA)"
 * $SpecimenProcessingProcedureCodeSystem#IgGAntibodyTest "IgG Antibody Test"
 * $SpecimenProcessingProcedureCodeSystem#IgMandIgGAntibodyTest "IgM and IgG Antibody Test"

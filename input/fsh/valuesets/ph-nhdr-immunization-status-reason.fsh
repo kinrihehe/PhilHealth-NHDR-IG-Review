@@ -1,7 +1,7 @@
 ValueSet: ImmunizationStatusReason
 Id: ph-nhdr-immunization-status-reason
-Title: "Immunization Status Reason Value Set"
-Description: "A value set representing reasons for immunization status."
+Title: "Immunization Status Reason"
+Description: "reasons for immunization status."
 * $ImmunizationStatusReasonCodeSystem#MotherBusy "Mother was busy"
 * $ImmunizationStatusReasonCodeSystem#ChildSick "Child was sick"
 * $ImmunizationStatusReasonCodeSystem#ForgotSchedule "Forgot schedule"

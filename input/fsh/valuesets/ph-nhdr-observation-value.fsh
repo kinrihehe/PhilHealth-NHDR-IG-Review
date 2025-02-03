@@ -1,6 +1,6 @@
 ValueSet: ObservationValue
 Id: ph-nhdr-observation-value
-Title: "Observation Value Set"
+Title: "Observation"
 Description: "A comprehensive value set for various observation values, including medical history, symptoms, clinical signs, and diagnostic outcomes."
 * $ObservationValueCodeSystem#MultiplePregnancy "Multiple pregnancy"
 * $ObservationValueCodeSystem#OvarianCyst "Ovarian cyst"

@@ -1,7 +1,7 @@
 ValueSet: SpecimenCondition
 Id: ph-nhdr-specimen-condition
-Title: "Specimen Condition Value Set"
-Description: "A value set representing the condition of a specimen."
+Title: "Specimen Condition"
+Description: "the condition of a specimen."
 * $SpecimenConditionCodeSystem#Frozen "Frozen"
 * $SpecimenConditionCodeSystem#ThawedButCold "Thawed but cold"
 * $SpecimenConditionCodeSystem#Warm "Warm"

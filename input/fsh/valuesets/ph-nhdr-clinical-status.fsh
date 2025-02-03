@@ -1,7 +1,7 @@
 ValueSet: ClinicalStatusValueSet
 Id: ph-nhdr-clinical-status
-Title: "Clinical Status Value Set"
-Description: "A value set representing clinical status options for patients in various contexts."
+Title: "Clinical Status"
+Description: "clinical status options for patients in various contexts."
 * $ClinicalStatusValueSet#Improved "Improved"
 * $ClinicalStatusValueSet#Recovered "Recovered"
 * $ClinicalStatusValueSet#HAMA_DAMA "HAMA/DAMA"

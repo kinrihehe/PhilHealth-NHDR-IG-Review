@@ -1,6 +1,6 @@
 ValueSet: EncounterHospitalizationDischargeDispositionValueSet
 Id: ph-nhdr-encounter-hospitalization-discharge-disposition
-Title: "Encounter Hospitalization Discharge Disposition Value Set"
+Title: "Encounter Hospitalization Discharge Disposition"
 Description: "This ValueSet contains a set of discharge disposition codes used to document the status or disposition of a patient after hospitalization."
 * ^status = #active
 * ^date = "2024-11-26"
