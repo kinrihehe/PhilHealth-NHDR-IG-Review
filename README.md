@@ -34,5 +34,4 @@ https://github.com/hl7au/au-fhir-erequesting
 
 **Contact:**
 
-For any inquiries or concerns, please contact [Contact Information](jgsuess@gmail.com).
-For any inquiries or concerns, please contact [Contact Information](silab.upm@up.edu.ph). 
+For any inquiries or concerns, please contact [JGSUESS](jgsuess@gmail.com), [SILAB](silab.upm@up.edu.ph).
