@@ -14,4 +14,4 @@ Description: "A value set representing clinical status options for patients in v
 * $ClinicalStatusValueSet#ILI "Influenza-like Illness (ILI)"
 * $ClinicalStatusValueSet#SARI "SARI"
 * $ClinicalStatusValueSet#Others "Others"
-* $ClinicalStatusValueSet#Others "DUMMY CODE"
+* $ClinicalStatusValueSet#Dummy "DUMMY CODE"
