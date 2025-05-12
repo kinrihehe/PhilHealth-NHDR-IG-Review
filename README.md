@@ -1,7 +1,4 @@
-This is the PH CORE IG Branch that the UPM SILab and DOH will update for the development of the PH CORE IG. 
-
-
-# Philippine Core (PH CORE) FHIR Implementation Guide (Development Repository)
+# Philippines National Health Data Repository (NHDR) FHIR Implementation Guide (Development Repository)
 
 **Disclaimer:** 
 > **This repository is currently in the development phase.**  
@@ -14,7 +11,7 @@ This is the PH CORE IG Branch that the UPM SILab and DOH will update for the dev
 
 **Future Plans:**
 
-> Upon finalization of the official Philippine Core FHIR Implementation Guide, the content of this repository will be transitioned to a more appropriate and permanent location.
+> Upon finalization of the official Philippine FHIR Implementation Guide, the content of this repository will be transitioned to a more appropriate and permanent location.
 
 **Contact:**
 
