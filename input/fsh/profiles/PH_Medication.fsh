@@ -2,14 +2,7 @@ Profile: PH_Medication
 Parent: Medication
 Id: PH-Medication
 Title: "PH Medication"
-Description: """
-This resource is primarily used for the identification and definition of a medication, including ingredients, for the purposes of prescribing, dispensing, and administering a medication as well as for making statements about medication use.
-
-### Usage Notes
-- This profile is aligned with the national health data strategy in the Philippines.
-- Medication coding will transition to SNOMED CT once officially implemented in the country.
-- Other supported terminologies may include applicable FDA drug codes and relevant FHIR-based terminologies
-"""
+Description: "This resource is primarily used for the identification and definition of a medication, including ingredients, for the purposes of prescribing, dispensing, and administering a medication as well as for making statements about medication use."
 
 * ^url = "https://nhdr.gov.ph/fhir/StructureDefinition/PH-Medication"
 * insert MetaData

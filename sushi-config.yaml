@@ -253,16 +253,6 @@ groups:
     - StructureDefinition/PH-Address
     - StructureDefinition/PH-Signature
 
-  GroupG:
-    name: Identifiers
-    resources:
-    - StructureDefinition/COVIDDataID
-    - StructureDefinition/COVIDPatientID
-    - StructureDefinition/DOHfhudCode
-    - StructureDefinition/OtherID
-    - StructureDefinition/PhilHealthID
-    - StructureDefinition/RegistrationNo
-
 #
 #
 # The ImplementationGuide resource defines several other properties

@@ -17,7 +17,20 @@ Description: "Refers to a formally or informally recognized grouping of people o
     HeadPosition named headPosition 0..* and
     HeadTelecom named headTelecom 0..*
 * modifierExtension ..0
-* identifier only $FHUDCode or $OtherID
+// * identifier only $FHUDCode or $OtherID
+* identifier ^slicing.discriminator.type = #value
+* identifier ^slicing.discriminator.path = "system"
+* identifier ^slicing.rules = #open
+* identifier contains
+    DOHFHUDCode 0..* and
+    PEN 0..* and
+    PAN 0..*
+* identifier[DOHFHUDCode].system = "http://nhdr.gov.ph/fhir/Identifier/dohfhudcode-id"
+* identifier[DOHFHUDCode].type.coding from $HealthFacilityVS
+* identifier[PEN].system = "http://nhdr.gov.ph/fhir/Identifier/philhealthemployernumber"
+* identifier[PEN].type.coding = #EN
+* identifier[PAN].system = "http://nhdr.gov.ph/fhir/Identifier/philhealthaccreditationnumber"
+* identifier[PAN].type.coding = #AN
 // * active ..0
 * type from $OrganizationTypeVS (required)
 // * name ..0

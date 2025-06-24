@@ -35,11 +35,23 @@ Description: "Captures key demographic and administrative information about indi
 * identifier ^slicing.rules = #open
 * identifier contains
     PhilHealthID 0..* and
-    PDD 0..*
+    PDD 0..* and
+    TIN 0..* and
+    SSS-GSIS 0..* and
+    DriversLicense 0..* and
+    PassportNumber 0..*
 * identifier[PhilHealthID].system = "http://nhdr.gov.ph/fhir/Identifier/philhealth-id"
 * identifier[PhilHealthID].type.coding = #NIIP
 * identifier[PDD].system = "http://nhdr.gov.ph/fhir/Identifier/pdd-id"
 * identifier[PDD].type.coding = #PDD
+* identifier[TIN].system = "http://nhdr.gov.ph/fhir/Identifier/tin-id"
+* identifier[TIN].type.coding = #TAX
+* identifier[SSS-GSIS].system = "http://nhdr.gov.ph/fhir/Identifier/sss-gsis-id"
+* identifier[SSS-GSIS].type.coding = #SB
+* identifier[DriversLicense].system = "http://nhdr.gov.ph/fhir/Identifier/driverslicense"
+* identifier[DriversLicense].type.coding = #DL
+* identifier[PassportNumber].system = "http://nhdr.gov.ph/fhir/Identifier/passportnumber"
+* identifier[PassportNumber].type.coding = #PPN
 // * active ..0
 * name
 * name.extension ..0
