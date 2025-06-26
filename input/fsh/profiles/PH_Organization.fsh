@@ -24,7 +24,7 @@ Description: "Refers to a formally or informally recognized grouping of people o
 * identifier contains
     DOHFHUDCode 0..* and
     PEN 0..* and
-    PAN 0..*
+    PAN 0..1
 * identifier[DOHFHUDCode].system = "http://nhdr.gov.ph/fhir/Identifier/dohfhudcode-id"
 * identifier[DOHFHUDCode].type.coding from $HealthFacilityVS
 * identifier[PEN].system = "http://nhdr.gov.ph/fhir/Identifier/philhealthemployernumber"

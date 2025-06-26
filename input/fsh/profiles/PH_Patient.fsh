@@ -19,9 +19,6 @@ Description: "Captures key demographic and administrative information about indi
     Religion named religion 0..* and
     IndigenousGroup named indigenousGroup 0..* and
     IndigenousPeople named indigenousPeople 0..* and
-    SpouseName named spouseName 0..* and
-    FatherName named fatherName 0..* and
-    MotherName named motherName 0..* and
     Occupation named occupation 0..* and
     Sex named sex 0..1 and
     Race named race 0..1 and
@@ -34,12 +31,12 @@ Description: "Captures key demographic and administrative information about indi
 * identifier ^slicing.discriminator.path = "system"
 * identifier ^slicing.rules = #open
 * identifier contains
-    PhilHealthID 0..* and
-    PDD 0..* and
-    TIN 0..* and
-    SSS-GSIS 0..* and
-    DriversLicense 0..* and
-    PassportNumber 0..*
+    PhilHealthID 0..1 and
+    PDD 0..1 and
+    TIN 0..1 and
+    SSS-GSIS 0..2 and
+    DriversLicense 0..1 and
+    PassportNumber 0..1
 * identifier[PhilHealthID].system = "http://nhdr.gov.ph/fhir/Identifier/philhealth-id"
 * identifier[PhilHealthID].type.coding = #NIIP
 * identifier[PDD].system = "http://nhdr.gov.ph/fhir/Identifier/pdd-id"

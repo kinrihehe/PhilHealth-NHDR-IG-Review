@@ -27,7 +27,7 @@ Description: "An interaction between a patient and healthcare provider(s) for th
 * identifier ^slicing.discriminator.path = "system"
 * identifier ^slicing.rules = #open
 * identifier contains
-    PhilHealthID 0..* and
+    PhilHealthID 0..1 and
     COVIDDataID 0..* and
     COVIDPatientID 0..*
 * identifier[PhilHealthID].system = "http://nhdr.gov.ph/fhir/Identifier/philhealth-id"
