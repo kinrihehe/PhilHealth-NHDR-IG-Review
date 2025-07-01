@@ -14,15 +14,27 @@ Description: "An interaction between a patient and healthcare provider(s) for th
     InvestigatorName named investigatorName 0..* and
     DateInterview named dateInterview 0..* and
     DateInvestigation named dateInvestigation 0..* and
-    ReporterName named reporterName 0..* and
-    Illness-Class named illnessClass 0..*
+    ReporterName named reporterName 0..*
 * modifierExtension ..0
 // * id ..0
 * implicitRules ..0
 * language ..0
 * text ..0
 * contained ..0
-* identifier only $PhilHealthID or $COVIDDataID or $COVIDPatientID
+// * identifier only $PhilHealthID or $COVIDDataID or $COVIDPatientID
+* identifier ^slicing.discriminator.type = #value
+* identifier ^slicing.discriminator.path = "system"
+* identifier ^slicing.rules = #open
+* identifier contains
+    PhilHealthID 0..1 and
+    COVIDDataID 0..* and
+    COVIDPatientID 0..*
+* identifier[PhilHealthID].system = "http://nhdr.gov.ph/fhir/Identifier/philhealth-id"
+* identifier[PhilHealthID].type.coding = #NIIP
+* identifier[COVIDDataID].system = "http://nhdr.gov.ph/fhir/Identifier/coviddata-id"
+* identifier[COVIDDataID].type.coding = #placeholder
+* identifier[COVIDPatientID].system = "http://nhdr.gov.ph/fhir/Identifier/covidpatient-id"
+* identifier[COVIDPatientID].type.coding = #COVID
 * status ^short = "NHDR will only use \"triaged\", \"in-progress\", \"cancelled\", and \"finished\"."
 * statusHistory ..0
 // * class ..0
@@ -66,3 +78,6 @@ Description: "An interaction between a patient and healthcare provider(s) for th
 * location.physicalType from $LocationPhysicalTypeVS (required)
 * partOf ..0
 * serviceProvider only Reference(PH_Organization)
+
+
+//  COVID Data ID has no defined code yet

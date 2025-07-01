@@ -2,7 +2,7 @@ Profile: PH_MedicationDispense
 Parent: MedicationDispense
 Id: PH-MedicationDispense
 Title: "PH MedicationDispense"
-Description: "Indicates that a medication product is to be or has been dispensed for a named person/patient."
+Description: "Indicates that a medication product is to be or has been dispensed for a named person or patient."
 * ^url = "https://nhdr.gov.ph/fhir/StructureDefinition/PH-MedicationDispense"
 * insert MetaData
 // * id ..0
@@ -11,7 +11,7 @@ Description: "Indicates that a medication product is to be or has been dispensed
 * language ..0
 * text ..0
 * contained ..0
-* extension contains Cost named cost 0..*
+* extension ..0
 * modifierExtension ..0
 * identifier ..0
 * partOf ..0

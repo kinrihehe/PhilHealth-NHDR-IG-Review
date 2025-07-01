@@ -12,12 +12,22 @@ Description: "Refers to a formally or informally recognized grouping of people o
 * language ..0
 * text ..0
 * contained ..0
-* extension contains
-    HeadName named headName 0..* and
-    HeadPosition named headPosition 0..* and
-    HeadTelecom named headTelecom 0..*
+* extension ..0
 * modifierExtension ..0
-* identifier only $FHUDCode or $OtherID
+// * identifier only $FHUDCode or $OtherID
+* identifier ^slicing.discriminator.type = #value
+* identifier ^slicing.discriminator.path = "system"
+* identifier ^slicing.rules = #open
+* identifier contains
+    DOHFHUDCode 0..* and
+    PEN 0..* and
+    PAN 0..1
+* identifier[DOHFHUDCode].system = "http://nhdr.gov.ph/fhir/Identifier/dohfhudcode-id"
+* identifier[DOHFHUDCode].type.coding from $HealthFacilityVS
+* identifier[PEN].system = "http://nhdr.gov.ph/fhir/Identifier/philhealthemployernumber"
+* identifier[PEN].type.coding = #EN
+* identifier[PAN].system = "http://nhdr.gov.ph/fhir/Identifier/philhealthaccreditationnumber"
+* identifier[PAN].type.coding = #AN
 // * active ..0
 * type from $OrganizationTypeVS (required)
 // * name ..0
@@ -36,9 +46,5 @@ Description: "Refers to a formally or informally recognized grouping of people o
 * contact.purpose ..0
 * contact.name
 * contact.address only $SD_Address
+* contact.telecom ..0
 * endpoint ..0
-
-
-
-//  Notes:
-//  SD_DOHFHUDCode needs to be updated with specifics

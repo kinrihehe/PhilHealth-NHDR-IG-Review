@@ -17,10 +17,10 @@ Description: "A record of a clinical assessment performed to determine what prob
 // * status ..0         Can't disable elements that are mandatory by default
 * statusReason ..0
 * code ..0
-* description ..0
+// * description ..0
 // * subject ..0        Can't disable elements that are mandatory by default
 * encounter ..0
-* effective[x] ..0
+* effective[x] only dateTime
 * date ..0
 * assessor ..0
 * previous ..0

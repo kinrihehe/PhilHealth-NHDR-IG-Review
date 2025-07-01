@@ -35,7 +35,8 @@ Description: "An action that is or was performed on or for a patient, practition
 * performer.extension ..0
 * performer.modifierExtension ..0
 * performer.function ..0
-// * performer.actor ..0        Can't disable elements that are mandatory by default
+// * performer.actor ..0
+* performer.onBehalfOf ..0
 * location ..0
 // * reasonCode ..0
 * reasonReference ..0

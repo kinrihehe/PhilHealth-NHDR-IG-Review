@@ -31,7 +31,7 @@ Description: "Measurements and simple assertions made about a patient, device or
 * effective[x] only dateTime
 * issued ..0
 * performer only Reference(PH_Practitioner)
-* value[x] only Quantity or CodeableConcept or string or dateTime or integer or Ratio
+* value[x] only Quantity or CodeableConcept or string or dateTime or integer or Ratio or boolean
 * value[x] from ObservationValueVS (required)
 * dataAbsentReason ..0
 // * interpretation ..0

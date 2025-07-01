@@ -49,7 +49,7 @@ publisher:
 pages:
   index.md:
     title: PHCDI Implementation Guide
-  artifacts:
+  # artifacts:
   #   title: Artifacts Summary
   extensions.md:
     title: Extensions
@@ -112,7 +112,6 @@ menu:
     Financial Profiles: artifacts.html#financial-profiles
     Specialized Profiles: artifacts.html#specialized-profiles
     Data Types: artifacts.html#data-types
-    Identifiers: artifacts.html#identifiers
     Extensions: artifacts.html#structures-extension-definitions
     Value Sets: artifacts.html#terminology-value-sets
     Code Systems: artifacts.html#terminology-code-systems
@@ -228,6 +227,7 @@ groups:
     - StructureDefinition/PH-Medication
     - StructureDefinition/PH-MedicationAdministration
     - StructureDefinition/PH-MedicationDispense
+    - StructureDefinition/PH-MedicationRequest
     - StructureDefinition/PH-MedicationStatement
     - StructureDefinition/PH-Observation
     - StructureDefinition/PH-Procedure
@@ -239,6 +239,7 @@ groups:
     name: Financial Profiles
     resources:
     - StructureDefinition/PH-Claim
+    - StructureDefinition/PH-ClaimResponse
     - StructureDefinition/PH-Coverage
     - StructureDefinition/PH-EnrollmentRequest
 
@@ -252,16 +253,6 @@ groups:
     resources:
     - StructureDefinition/PH-Address
     - StructureDefinition/PH-Signature
-
-  GroupG:
-    name: Identifiers
-    resources:
-    - StructureDefinition/COVIDDataID
-    - StructureDefinition/COVIDPatientID
-    - StructureDefinition/DOHfhudCode
-    - StructureDefinition/OtherID
-    - StructureDefinition/PhilHealthID
-    - StructureDefinition/RegistrationNo
 
 #
 #

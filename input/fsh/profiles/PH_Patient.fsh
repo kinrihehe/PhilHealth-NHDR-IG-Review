@@ -19,27 +19,35 @@ Description: "Captures key demographic and administrative information about indi
     Religion named religion 0..* and
     IndigenousGroup named indigenousGroup 0..* and
     IndigenousPeople named indigenousPeople 0..* and
-    SpouseName named spouseName 0..* and
-    FatherName named fatherName 0..* and
-    MotherName named motherName 0..* and
     Occupation named occupation 0..* and
     Sex named sex 0..1 and
     Race named race 0..1 and
     MemberType named memberType 0..1 and
-    PatientType named patientType 0..1 and
-    EducationalAttainment named educationalAttainment 0..1 and
-    $Signature named signature 0..*
+    PatientType named type 0..1 and
+    EducationalAttainment named educationalAttainment 0..1
 * modifierExtension ..0
 * identifier ^slicing.discriminator.type = #value
 * identifier ^slicing.discriminator.path = "system"
 * identifier ^slicing.rules = #open
 * identifier contains
-    PhilHealthID 0..* and
-    PDD 0..*
+    PhilHealthID 0..1 and
+    PDD 0..1 and
+    TIN 0..1 and
+    SSS-GSIS 0..2 and
+    DriversLicense 0..1 and
+    PassportNumber 0..1
 * identifier[PhilHealthID].system = "http://nhdr.gov.ph/fhir/Identifier/philhealth-id"
 * identifier[PhilHealthID].type.coding = #NIIP
 * identifier[PDD].system = "http://nhdr.gov.ph/fhir/Identifier/pdd-id"
 * identifier[PDD].type.coding = #PDD
+* identifier[TIN].system = "http://nhdr.gov.ph/fhir/Identifier/tin-id"
+* identifier[TIN].type.coding = #TAX
+* identifier[SSS-GSIS].system = "http://nhdr.gov.ph/fhir/Identifier/sss-gsis-id"
+* identifier[SSS-GSIS].type.coding = #SB
+* identifier[DriversLicense].system = "http://nhdr.gov.ph/fhir/Identifier/driverslicense"
+* identifier[DriversLicense].type.coding = #DL
+* identifier[PassportNumber].system = "http://nhdr.gov.ph/fhir/Identifier/passportnumber"
+* identifier[PassportNumber].type.coding = #PPN
 // * active ..0
 * name
 * name.extension ..0
@@ -53,7 +61,6 @@ Description: "Captures key demographic and administrative information about indi
 * telecom.use ..0
 * telecom.rank ..0
 * telecom.period ..0
-* gender from $GenderVS (required)
 // * birthDate ..0
 * deceased[x]
 * address only $SD_Address
@@ -75,7 +82,6 @@ Description: "Captures key demographic and administrative information about indi
 * contact.organization ..0
 * contact.period ..0
 * contact.address only $SD_Address
-* contact.extension contains $Signature named signature 0..*
 * communication ..0
 * generalPractitioner only Reference(PH_Organization)
 * generalPractitioner ^definition = "Patient's nominated care provider. Pertains to the Konsulta Health Care Provider"
