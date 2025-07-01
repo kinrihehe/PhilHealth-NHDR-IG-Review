@@ -6,4 +6,4 @@ Description: "A value set specifying the various types of services provided duri
 * insert MetaData
 * ^experimental = false
 * include codes from system $ServiceTypeCS
-* $ServiceTypeCS#630 "Konsulta Services" 
+* include $ServiceTypeCS#630 "Konsulta Services" 

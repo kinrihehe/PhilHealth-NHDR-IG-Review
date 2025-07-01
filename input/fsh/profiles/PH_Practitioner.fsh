@@ -13,8 +13,7 @@ Description: "A person who is directly or indirectly involved in the provisionin
 * text ..0
 * contained ..0
 * extension contains
-    Sex named sex 0..* and
-    $Signature named signature 0..*
+    Sex named sex 0..*
     // $MaritalStatus named maritalStatus 0..* //For Release02
 * modifierExtension ..0
 * identifier ..1

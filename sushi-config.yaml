@@ -49,7 +49,7 @@ publisher:
 pages:
   index.md:
     title: PHCDI Implementation Guide
-  artifacts:
+  # artifacts:
   #   title: Artifacts Summary
   extensions.md:
     title: Extensions
@@ -227,6 +227,7 @@ groups:
     - StructureDefinition/PH-Medication
     - StructureDefinition/PH-MedicationAdministration
     - StructureDefinition/PH-MedicationDispense
+    - StructureDefinition/PH-MedicationRequest
     - StructureDefinition/PH-MedicationStatement
     - StructureDefinition/PH-Observation
     - StructureDefinition/PH-Procedure
@@ -238,6 +239,7 @@ groups:
     name: Financial Profiles
     resources:
     - StructureDefinition/PH-Claim
+    - StructureDefinition/PH-ClaimResponse
     - StructureDefinition/PH-Coverage
     - StructureDefinition/PH-EnrollmentRequest
 

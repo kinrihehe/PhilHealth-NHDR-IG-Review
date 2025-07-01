@@ -23,9 +23,8 @@ Description: "Captures key demographic and administrative information about indi
     Sex named sex 0..1 and
     Race named race 0..1 and
     MemberType named memberType 0..1 and
-    PatientType named patientType 0..1 and
-    EducationalAttainment named educationalAttainment 0..1 and
-    $Signature named signature 0..*
+    PatientType named type 0..1 and
+    EducationalAttainment named educationalAttainment 0..1
 * modifierExtension ..0
 * identifier ^slicing.discriminator.type = #value
 * identifier ^slicing.discriminator.path = "system"
@@ -62,7 +61,6 @@ Description: "Captures key demographic and administrative information about indi
 * telecom.use ..0
 * telecom.rank ..0
 * telecom.period ..0
-* gender from $GenderVS (required)
 // * birthDate ..0
 * deceased[x]
 * address only $SD_Address
@@ -84,7 +82,6 @@ Description: "Captures key demographic and administrative information about indi
 * contact.organization ..0
 * contact.period ..0
 * contact.address only $SD_Address
-* contact.extension contains $Signature named signature 0..*
 * communication ..0
 * generalPractitioner only Reference(PH_Organization)
 * generalPractitioner ^definition = "Patient's nominated care provider. Pertains to the Konsulta Health Care Provider"

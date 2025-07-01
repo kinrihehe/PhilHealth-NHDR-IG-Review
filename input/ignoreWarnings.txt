@@ -4,28 +4,16 @@
 # (And include comments like this justifying why)
 # See https://github.com/FHIR/sample-ig/blob/master/input/ignoreWarnings.txt for examples
 
-#   The initial release of PHCDI disables elements that are not being captured. These errors are to be ignored for now.
-All_observations_should_have_a_performer
-All_observations_should_have_a_subject
-All_observations_should_have_an_effectiveDateTime_or_an_effectivePeriod
-CODESYSTEM_SHAREABLE_MISSING
-Questionnaire_QR_Q_None
-Validation_VAL_Profile_Minimum
-
 #   The following errors are mismatches in the examples/instances. Ignored for now until all profiles are finalized, then instances are to be updated.
 _DT_Fixed_Wrong
-Details_for__matching_against_Profile_
 TERMINOLOGY_TX_SYSTEM_NO_CODE
-Terminology_TX_Confirm_4a
-Validation_VAL_Profile_Maximum
-
-#   Errors/warnings are result of intentional design.
-SD_VALUE_COMPLEX_FIXED
-TYPE_SPECIFIC_CHECKS_DT_MARKDOWN_HTML
-Type_Specific_Checks_DT_UUID_Valid
 
 #   Deprecated element.
 MSG_DEPENDS_ON_DEPRECATED
 
-#   Code will be added to the ValueSet
-fsh-generated\resources\StructureDefinition-COVIDPatientID.json
+#   CodeSystems are referenced to an external, non-terminology service set of codes.
+CODESYSTEM_PROPERTY_URI_UNKNOWN
+RESOURCE_CANONICAL_MISMATCH
+
+#   Codes are added to the ValueSet, not from any existing CodeSystem.
+VALUESET_INCLUDE_INVALID_CONCEPT_CODE

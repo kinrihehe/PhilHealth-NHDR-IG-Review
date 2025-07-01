@@ -12,10 +12,7 @@ Description: "Refers to a formally or informally recognized grouping of people o
 * language ..0
 * text ..0
 * contained ..0
-* extension contains
-    HeadName named headName 0..* and
-    HeadPosition named headPosition 0..* and
-    HeadTelecom named headTelecom 0..*
+* extension ..0
 * modifierExtension ..0
 // * identifier only $FHUDCode or $OtherID
 * identifier ^slicing.discriminator.type = #value
@@ -49,9 +46,5 @@ Description: "Refers to a formally or informally recognized grouping of people o
 * contact.purpose ..0
 * contact.name
 * contact.address only $SD_Address
+* contact.telecom ..0
 * endpoint ..0
-
-
-
-//  Notes:
-//  SD_DOHFHUDCode needs to be updated with specifics

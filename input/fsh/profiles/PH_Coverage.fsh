@@ -22,13 +22,14 @@ Description: "Financial instrument which may be used to reimburse or pay for hea
 // * beneficiary ..0    Can't disable elements that are mandatory by default
 * dependent ..0
 * relationship ..0
-// * period ..0
+* period ..0
 * payor only Reference(PH_Organization or PH_Patient)
-* class.id ..0
-* class.extension ..0
-* class.modifierExtension ..0
+* class ..0
+// * class.id ..0
+// * class.extension ..0
+// * class.modifierExtension ..0
 // * class.value ..0    Can't disable elements that are mandatory by default
-* class.name ..0
+// * class.name ..0
 * order ..0
 * network ..0
 * costToBeneficiary.extension ..0

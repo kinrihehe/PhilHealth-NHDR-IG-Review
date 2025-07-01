@@ -11,8 +11,7 @@ Description: "A provider issued list of professional services and products which
 * language ..0
 * text ..0
 * contained ..0
-* extension contains $Signature named signature 0..*
-* extension[signature] ^isModifier = false
+* extension ..0
 * modifierExtension ..0
 // * identifier ..0
 // * status 0..0                    Can't disable elements that are mandatory by default
@@ -63,5 +62,28 @@ Description: "A provider issued list of professional services and products which
 * item.bodySite ..0
 * item.subSite ..0
 * item.encounter ..0
-* item.detail ..0
-* total ..0
+// * item.detail ..0
+// * item.detail.sequence ..0       Can't disable elements that are mandatory by default
+* item.detail.revenue ..0
+* item.detail.category ..0
+// * item.detail.productOrService ..0
+* item.detail.modifier ..0
+* item.detail.programCode ..0
+* item.detail.quantity ..0
+* item.detail.unitPrice ..0
+* item.detail.factor ..0
+* item.detail.net ..0
+* item.detail.udi ..0
+// * item.detail.subDetail
+// * item.detail.subDetail.sequence ..0     Can't disable elements that are mandatory by default
+* item.detail.subDetail.revenue ..0
+* item.detail.subDetail.category ..0
+// * item.detail.subDetail.productOrService ..0
+* item.detail.subDetail.modifier ..0
+* item.detail.subDetail.programCode ..0
+* item.detail.subDetail.quantity ..0
+* item.detail.subDetail.unitPrice ..0
+* item.detail.subDetail.factor ..0
+* item.detail.subDetail.net ..0
+* item.detail.subDetail.udi ..0
+// * total ..0

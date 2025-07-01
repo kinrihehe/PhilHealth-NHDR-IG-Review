@@ -14,8 +14,7 @@ Description: "An interaction between a patient and healthcare provider(s) for th
     InvestigatorName named investigatorName 0..* and
     DateInterview named dateInterview 0..* and
     DateInvestigation named dateInvestigation 0..* and
-    ReporterName named reporterName 0..* and
-    Illness-Class named illnessClass 0..*
+    ReporterName named reporterName 0..*
 * modifierExtension ..0
 // * id ..0
 * implicitRules ..0
