@@ -239,7 +239,6 @@ groups:
     name: Financial Profiles
     resources:
     - StructureDefinition/PH-Claim
-    - StructureDefinition/PH-ClaimResponse
     - StructureDefinition/PH-Coverage
     - StructureDefinition/PH-EnrollmentRequest
 

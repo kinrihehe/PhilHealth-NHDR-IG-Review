@@ -33,7 +33,7 @@ Usage: #inline
 * identifier.type.coding.code = #NIIP
 * identifier.type.text = "PhilHealth Identification Number"
 * identifier.value = "PH12345"
-* name.family = "Pascua"
+* name.family = "Manipol"
 * name.given[0] = "Antonio Jerome"
 * name.given[+] = "Morales"
 * name.suffix = "Mr."
@@ -50,9 +50,9 @@ Usage: #inline
 * identifier.type.text = "PhilHealth Identification Number"
 * identifier.value = "PH54321"
 * patient = Reference(Patient-1)
-* name.family = "Razal"
-* name.given[0] = "Emily Frances Lourdes"
-* name.given[+] = "Aberin"
+* name.family = "Bautista"
+* name.given[0] = "Lorna Mae"
+* name.given[+] = "Santos"
 * name.suffix = "Mrs."
 * birthDate = "1971-02-11"
 * address.line = "Fordham Road"
@@ -67,8 +67,11 @@ Usage: #inline
 * extension.url = "https://nhdr.gov.ph/fhir/StructureDefinition/Sex"
 * extension.valueCode = #F
 * telecom[0].value = "912-00-00"
+* telecom[=].system = #phone
 * telecom[+].value = "0927-000-0000"
-* telecom[+].value = "earazal@email.com"
+* telecom[=].system = #phone
+* telecom[+].value = "lmbautista@email.com"
+* telecom[=].system = #email
 
 Instance: Org-1
 InstanceOf: Organization
