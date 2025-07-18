@@ -13,7 +13,7 @@ Description: "An order or request for both supply of the medication and the inst
 * contained ..0
 * extension ..0
 * modifierExtension ..0
-// * identifier ..0
+* identifier ..0
 // * status ..0         //  Can't disable elements that are mandatory by default
 * statusReason ..0
 // * intent ..0         //  Can't disable elements that are mandatory by default
@@ -40,6 +40,9 @@ Description: "An order or request for both supply of the medication and the inst
 * insurance ..0
 * note ..0
 // * dosageInstruction ..0
+* dosageInstruction.id ..0
+* dosageInstruction.extension ..0
+* dosageInstruction.modifierExtension ..0
 * dosageInstruction.sequence ..0
 * dosageInstruction.text ..0
 * dosageInstruction.additionalInstruction ..0
@@ -49,6 +52,8 @@ Description: "An order or request for both supply of the medication and the inst
 * dosageInstruction.site ..0
 // * dosageInstruction.route ..0
 * dosageInstruction.method ..0
+* dosageInstruction.doseAndRate.id ..0
+* dosageInstruction.doseAndRate.extension ..0
 * dosageInstruction.doseAndRate.type ..0
 * dosageInstruction.doseAndRate.dose[x] ..0
 * dosageInstruction.doseAndRate.rate[x] only SimpleQuantity
@@ -56,6 +61,9 @@ Description: "An order or request for both supply of the medication and the inst
 * dosageInstruction.maxDosePerAdministration ..0
 * dosageInstruction.maxDosePerLifetime ..0
 // * dispenseRequest ..0
+* dispenseRequest.id ..0
+* dispenseRequest.extension ..0
+* dispenseRequest.modifierExtension ..0
 * dispenseRequest.initialFill ..0
 * dispenseRequest.dispenseInterval ..0
 * dispenseRequest.validityPeriod ..0

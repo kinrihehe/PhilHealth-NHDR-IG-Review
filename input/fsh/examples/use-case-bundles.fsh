@@ -289,12 +289,12 @@ Usage: #inline
 * period.end = "2024-07-18T10:00:00+08:00"
 * reasonCode = $sct#109006 "Anxiety disorder of childhood OR adolescence"
 * reasonCode.text = "Anxiety disorder of childhood OR adolescence"
-* location.location = Reference(Location/Location-General-Hospital-Room-101) "General Hospital Room"
 * location.physicalType = $CodeSystem-location-physical-type.html#wa "Ward"
 * diagnosis.condition = Reference(Condition/Condition-1) "Diabetes mellitus type 2"
+//  Encounter.location.location, Encounter.status and Encounter.class are not captured in CF2, but are mandatory elements
+* location.location = Reference(Location/Location-General-Hospital-Room-101) "General Hospital Room"
 * status = #triaged
 * class = $v3-ActCode#EMER "emergency"
-//  Encounter.location.location, Encounter.status and Encounter.class are not captured in CF2, but are mandatory elements
 
 Instance: CF2-Condition
 InstanceOf: PH_Condition
@@ -303,8 +303,9 @@ Usage: #inline
 * clinicalStatus = $condition-clinical#0 "Active"
 * clinicalStatus.text = "Active"
 * code = $ICD#A00 "Cholera"
-* subject = Reference(CF2-Patient) "CF2 Patient"
 //  Condition.subject is not captured, but is mandatory
+* subject = Reference(CF2-Patient) "CF2 Patient"
+
 
 Instance: CF2-Procedure
 InstanceOf: PH_Procedure
@@ -313,11 +314,10 @@ Usage: #inline
 * code = $RVSCodeCS#10060 "INCISION AND DRAINAGE OF ABSCESS (E.G., CARBUNCLE, SUPPURATIVE HIDRADENITIS, CUTANEOUS OR SUBCUTANEOUS ABSCESS, CYST, FURUNCLE, OR PARONYCHIA)"
 * performedDateTime = "2025-04-15T10:00:00.000Z"
 * bodySite = $sct#108003 "Entire condylar emissary vein"
-* extension.url = "https://nhdr.gov.ph/fhir/StructureDefinition/IllnessClass"
-* extension.valueCodeableConcept = $sct#108003 "Entire condylar emissary vein"
 * status = #preparation
-* subject = Reference(CF2-Patient) "CF2 Patient"
 //  Procedure.subject is not captured, but is mandatory
+* subject = Reference(CF2-Patient) "CF2 Patient"
+
 
 Instance: CF2-Practitioner
 InstanceOf: PH_Practitioner

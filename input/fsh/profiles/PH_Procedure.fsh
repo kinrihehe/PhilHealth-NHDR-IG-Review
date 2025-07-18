@@ -13,8 +13,7 @@ Description: "An action that is or was performed on or for a patient, practition
 * language ..0
 * text ..0
 * contained ..0
-* extension contains
-    IllnessClass named illnessClass 0..*
+* extension ..0
 * modifierExtension ..0
 // * identifier ..0
 * instantiatesCanonical ..0

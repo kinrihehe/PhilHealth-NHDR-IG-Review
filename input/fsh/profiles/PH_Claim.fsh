@@ -11,7 +11,8 @@ Description: "A provider issued list of professional services and products which
 * language ..0
 * text ..0
 * contained ..0
-* extension ..0
+// * extension ..0
+* extension contains ClaimEncounter named claimEncounter ..*
 * modifierExtension ..0
 // * identifier ..0
 // * status 0..0                    Can't disable elements that are mandatory by default
