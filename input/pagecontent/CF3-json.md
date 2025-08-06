@@ -1,20 +1,20 @@
 <html>
     <style>table, thead, td{border:2px solid #ccc; border-collapse:collapse}</style>
     <ul class="nav nav-tabs">
-        <li><a href="CF2.html">Content</a></li>
-        <li><a href="CF2-mapping.html">Mappings</a></li>
-        <li class="active"><a href="#">JSON</a></li>
+        <li><a href="CF3.html">Content</a></li>
+        <li><a href="CF3-mapping.html">Mappings</a></li>
+        <li class="active"><a href="#">Sample JSON Bundles</a></li>
     </ul>
 </html>
 
 ```json
     {
         "resourceType": "Bundle",
-        "id": "Bundle-ClaimsForm2",
+        "id": "Bundle-ClaimsForm3",
         "type": "transaction",
         "identifier": {
             "system": "http://nhdr.gov.ph/fhir/ValueSet-form-type",
-            "value": "CF2"
+            "value": "CF3"
         },
         "entry": [
             {

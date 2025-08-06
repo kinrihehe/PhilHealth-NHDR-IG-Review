@@ -1,124 +1,170 @@
-### Implementation Rules
-
-* name.given is an array that captures the first name and middle name.
-    1. name.`given[0]` is used to capture a person's **first name**.
-    1. name.`given[1]` is used to capture a person's **middle name**.
-
-* Encounter.reasonCode <span style="color:red">**SHALL**</span> be supported if `Patient Disposition` is *Transferred/Referred*.
-
-* **ICD 10 or RVS Code** field will either be `Condition.code` or `Procedure.code` respectively. If the data fits in `Procedure.code`, you <span style="color:red">**SHOULD**</span> use a separate resource as `Procedure.code` has a maximum cardinality of 1.
-
----
-
-
-<html><style>table, thead, td{border:2px solid #ccc; border-collapse:collapse}</style>
-
-<ul class="nav nav-tabs">
-
-<li>
-    <a href="CF2.html">Content</a>
-</li>
-
-<li class="active">
-    <a href="#">Mappings</a>
-</li>
-
-<li>
-    <a href="CF2-json.html">JSON</a>
-</li>
-
-</ul>
-
+<html>
+    <style>
+        table, thead, td{
+            border:2px solid #ccc; 
+            border-collapse:collapse; 
+        }
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
+        table th:nth-child(4) { width: 10%; }
+        table th:nth-child(5) { width: 10%; }
+    </style>
+    <ul class="nav nav-tabs">
+        <li><a href="CF2.html">Content</a></li>
+        <li class="active"><a href="#">Mappings</a></li>
+        <li><a href="CF2-json.html">JSON</a></li>
+    </ul>
 </html>
 
-| <center>Form Field</center> | <center>FHIR Mapping <i>(profile)</i></center> | <center>Data Type <i>(profile)</i></center> | <center>Cardinality</center> | <center>Length</center> | <center>ValueSet</center> |
-|:---------|:------------|:---------|:--------:|:-----------:|:--------:|
-| Series #| Claim.identifier| Identifier | 0..1 | 15 | --- |
-| **Part I - Health Care Institution (HCI) Information** | | | | | |
-| PhilHealth Accreditation No. (PAN) - Institutional Health Care Provider | Organization.identifier | Identifier([OtherIDs](StructureDefinition-OtherID.html)) | 0..1 | --- | #AN "Accreditation Number" |
-| Name of Health Care Institution | Organization.name | string | 0..1 | --- | --- |
-| Address (Building Number and Street Name) | Organization.address.line | string | 0..* | --- | --- |
-| Address (City/Municipality) | Organization.address.extension:cityMunicipality | ~~Coding~~ **String** | 0..* | --- | [City](ValueSet-CityVS.html) |
-| Address (Province) | Organization.address.extension:province | ~~Coding~~ **String** | 0..* | --- | [Province](ValueSet-ProvinceVS.html) |
-| **Part II - Patient Confinement Information** | | | | | |
-| Name of Patient (Last Name) | Patient.name.family | string | 0..* | 60 | --- |
-| Name of Patient (First Name) | Patient.name.given[0] | string | 0..* | 60 | --- |
-| Name of Patient (Name Extension) | Patient.name.suffix | string | 0..* | 5 | --- |
-| Name of Patient (Middle Name) | Patient.name.given[1]  | String | 0..* | 60 | --- |
-| Was Patient referred by another HCI? [Yes/No] | QuestionnaireResponse.item.answer.value[x] | boolean | 0..1 | 1 | --- |
-| Name of referring Health Care Institution | Encounter.hospitalization.origin | string | 0..1 | 12 | --- |
-| Address of referring HCI (Building Number and Street Name) | Organization.address.line | string | 0..* | --- | --- |
-| Address of referring HCI (City/Municipality) | Organization.address.extension:cityMunicipality | ~~Coding~~ **String** | 0..* | --- | [City](ValueSet-CityVS.html) |
-| Address of referring HCI (Province) | Organization.address.extension:province | ~~Coding~~ **String** | 0..* | --- | [Province](ValueSet-ProvinceVS.html) |
-| Address of referring HCI (ZIP Code) | Organization.address.postalCode | integer | 0..* | --- | --- |
-| Confinement Period (Date & Time Admitted) | Encounter.period | Period | --- | --- | --- |
-| Confinement Period (Date & Time Discharged) | Encounter.period | Period | --- | --- |--- |
-| Patient Disposition | Condition.clinicalStatus | CodeableConcept | 0..1 | 1 | [ClinicalStatus](https://hl7.org/fhir/R4/valueset-condition-clinical.html) |
-| Patient Disposition: Expired | Patient.deceased[x] | dateTime | 0..1 | --- | --- |
-| Patient Disposition: Transferred/Referred (Name of Referral Health Care Institution) | Encounter.hospitalization.destination | string | 0..* | --- | --- |
-| Patient Disposition: Transferred/Referred HCI Address (Building Number and Street Name) | Organization.address.line | string | 0..* | --- | --- |
-| Patient Disposition: Transferred/Referred HCI Address (City/Municipality) | Organization.address.extension:province | ~~Coding~~ **String** | 0..* | --- | [City](ValueSet-CityVS.html) |
-| Patient Disposition: Transferred/Referred HCI Address (Province) | Organization.address.extension:province | ~~Coding~~ **String** | 0..* | --- | [Province](ValueSet-ProvinceVS.html) |
-| Patient Disposition: Transferred/Referred HCI Address (Postal Code) | Organization.address.postalCode | integer | 0..* | --- | --- |
-| Patient Disposition: Reason/s for referral/transfer | Encounter.reasonCode | CodeableConcept | 0..1 | --- | [ReasonCode](https://hl7.org/fhir/R4/valueset-encounter-reason.html) |
-| Type of Accomodation [Private/Non-Private] | Encounter.location.physicalType | CodeableConcept | 0..1 | 4 | [Location Physical Type](ValueSet-EncounterLocationPhysicalTypeVS.html) |
-| Admission Diagnosis/es | Encounter.diagnosis.condition | string | 0..1 | 500 | --- |
-| Discharge Diagnosis/es: Diagnosis | ~~Encounter.diagnosis.condition~~ | ~~string~~ | ~~0..*~~ 0..1 | ~~500~~ | |
-| Discharge Diagnosis/es: ICD-10 Code/s | ~~Encounter.diagnosis.condition.code.coding~~ | ~~CodeableConcept~~ | --- | ~~15~~ | --- |
-| Discharge Diagnosis/es: Related Procedure/s (if there's any) | Procedure.code.text | string | 0..1 | 150 | --- |
-| Discharge Diagnosis/es: RVS Code | Procedure.code | CodeableConcept | 0..1 | 6 | [RVS Codes](ValueSet-ProcedureCodeVS.html) |
-| Discharge Diagnosis/es: Date of Procedure | Procedure.performed[x] | dateTime | 0..1 | 10 | --- |
-| Discharge Diagnosis/es: Laterality (Left, Right, Both) | Procedure.bodySite | CodeableConcept | 0..* | ~~1~~ 6 | [Procedure Body Site](ValueSet-ProcedureBodySiteVS.html) |
-| Package Code | Coverage.identifier | CodeableConcept | --- | --- | 
-| Package (Procedure) | Procedure.extension:illnessClass | CodeableConcept | --- | --- | --- |
-| Package (Session) | Encounter.extension:illnessClass | CodeableConcept | --- | --- | --- |
-| Date of Package | Coverage.period | Period | --- | --- | --- |
-| TB DOTS Phase | Coverage.class.type | CodeableConcept | --- | --- | --- |
-| Animal Bite Vaccination | MedicalAdministrataion.medication[x] | Reference([PH_Medication](StructureDefinition-PH-Medication.html)) | --- | --- | --- |
-| Animal Bite Vaccination Date | MedicationAdministration.effective[x] | dateTime | --- | --- | --- |
-| Newborn Care Screening | Coverage.class.type | CodeableConcept | --- | --- | ~~[Coverage Class](https://hl7.org/fhir/R4/valueset-coverage-class.html)~~ |
-| Newborn Care Sub-screening | Coverage.class.type | CodeableConcept | --- | --- | ~~[Coverage Class](https://hl7.org/fhir/R4/valueset-coverage-class.html)~~ |
-| Laboratory Number | Coverage.identifier | Identifier | --- | --- | --- |
-| ICD10 or RVS Code | Condition.code / Procedure.code | CodeableConcept | --- | --- | [ICD-10](ValueSet-ICD10VS.html) / [RVS Codes](ValueSet-ProcedureCodeVS.html) |
-| Accreditation No. | Practitioner.identifier | Identifier([OtherIDs](StructureDefinition-OtherID.html)) | 0..1 | 12 | #AN "Accreditation Number" |
-| Practitioner Name (Last Name) | Practitioner.name.family | string | 0..1 | 60 | --- |
-| Practitioner Name (First Name) | Practitioner.name.given[0] | string | --- | --- | --- |
-| Practitioner Name (Name Extension) | Practitioner.name.suffix | string | --- | --- | --- |
-| Practitioner Name (Middle Name) | Practitioner.name.given[1] | string | --- | --- | --- |
-| Practitioner Signature | Practitioner.extension:signature.data | ~~base64Binary~~ Signature | --- | --- | --- |
-| Date Signed (MM-DD-YYYY) | Practitioner.extension:signature.when | ~~instant~~ date | --- | --- | --- |
-| Co-Pay Details | Coverage.costToBeneficiary.type | CodeableConcept | 0..1 | ~~14~~ 1 | [Coverage Co-Pay Type](https://hl7.org/fhir/R4/valueset-coverage-copay-type.html) |
-| Co-Pay Amount | Coverage.costToBeneficiary.value[x] | Money | ~~1..1~~ 0..1 | **1** | --- |
-| **Part III - Certification of Consumption of Benefits and Consent to Access Patient Record/s** | | | | | |
-| Certification of Consumption of Benefits | CoverageEligibilityRequest.identifier | CodeableConcept | --- | 1 | --- |
-| A0 Total Health Care Institution Fees (Total Actual Charges) | Coverage.costToBeneficiary.value[x] | Money | 1..1 | 12 | --- |
-| A0 Total Professional Fees (Total Actual Charges) | Coverage.costToBeneficiary.value[x] | Money | 1..1 | 12 | --- |
-| A0 Grand Total (Total Actual Charges) | Coverage.costToBeneficiary.value[x] | Money | 1..1 | 12 | --- |
-| B0 Total HCI Fees (Total Actual Charges) | Coverage.costToBeneficiary.value[x] | Money | 1..1 | 12 | --- |
-| B0 Total HCI Fees (Amount after Application of Discount) | Coverage.costToBeneficiary.value[x] | Money | 1..1 | 12 | --- |
-| B0 Total HCI Fees (Amount after PhilHealth Deduction) | Coverage.costToBeneficiary.value[x] | Money| 1..1 | 12 | --- |
-| B0 Total HCI Fees (Amount after PhilHealth Deduction) Paid By: | Coverage.payor | Reference([PH_Patient](StructureDefinition-PH-Patient.html) or [PH_Organization](StructureDefinition-PH-Organization.html)) | 1..* | 1 | --- |
-| B0 Total Professional Fees (Total Actual Charges) | Coverage.costToBeneficiary.value[x] | Money | 1..1 | 12 | --- |
-| B0 Total Professional Fees (Amount after Application of Discount) | Coverage.costToBeneficiary.value[x] | Money | 1..1 | 12 | --- |
-| B0 Total Professional Fees (PhilHealth Benefit) | Coverage.costToBeneficiary.value[x] | Money | 1..1 | 12 | --- |
-| B0 Total Professional Fees (Amount after PhilHealth Deduction) | Coverage.costToBeneficiary.value[x] | Money | 1..1 | 12 | --- |
-| B0 Total Professional Fees (Amount after PhilHealth Deduction) Paid By: | Coverage.payor | Reference([PH_Patient](StructureDefinition-PH-Patient.html) or [PH_Organization](StructureDefinition-PH-Organization.html)) | 1..* | 1 | --- |
-| B1 Total cost of purchase/s for drugs/medicines and/or medical supplies bought by the patient.member within/outside the HCI during confinement | Claim.item.net | Money | 0..1 | 12 | --- |
-| B1 Total cost of diagnostic/laboratory examinations paid by the patient/member done within/outside the HCI during confinement | Claim.item.net | Money | 0..1 | 12 | --- |
-| Signature Type | Claim.extension:signature.type | CodeableConcept | --- | --- | [Signature Type](https://hl7.org/fhir/R4/valueset-signature-type.html) |
-| Signature SubType | Claim.extension:signature.extension:signatureSubType | CodeableConcept | --- | --- | --- |
-| ~~Date Signed~~ Date Recevied | Claim.extension:signature.when | ~~instant~~ **date** | 1..1 | --- | --- |
-| Signature Image | Claim.extension:signature.data | ~~base64Binary~~ **Signature** | 1..1 | --- | --- |
-| Signature Name | Claim.extension:signature.who | ~~Reference(PH_Patient or PH_Organization or PH_Practitioner or PH_PractitionerRole or or RelatedPerson or Device)~~ **HumanName** | 0..* | --- | --- |
-| ~~Designation | Claim.extension:signature.extension:signaturePosition | ~~CodeableConcept~~ **String** | 0..* | --- | ---~~ |
-| Relationship of the representative to the member/patient: | ~~extension:signature.who~~ Claim.extension:signature.extension:relationship | ~~Reference~~ CodeableConcept | 0..* | --- | --- |
-| Reason for signing on behalf of the member/patient: | Claim.extension:signature.extension:signatureReason | CodeableConcept | 0..1 | --- | --- |
-| Thumbmark Validation (Patient or Representative?) | Questionnaire.Response.item.answer.value[x] | **boolean?** | 0..1 | --- | --- |
-| Printed Thumbmark | Claim.extension:signature.extension:**signatureThumbmark** | ~~base64Binary~~ | --- | --- | --- |
-| **Part IV - Certification of Consumption of Health Care Institution** | | | | | |
-| Signature Type | Claim.extension:signature.type | CodeableConcept | --- | --- | [Signature Type](https://hl7.org/fhir/R4/valueset-signature-type.html) |
-| Signature SubType | Claim.extension:signature.extension:signatureSubType | CodeableConcept | --- | --- | --- |
-| ~~Date Signed~~ Date Recevied | Claim.extension:signature.when | ~~instant~~ **date** | 1..1 | --- | --- |
-| Signature Image | Claim.extension:signature.data | ~~base64Binary~~ **Signature** | 1..1 | --- | --- |
-| Signature Name | Claim.extension:signature.who | ~~Reference(PH_Patient or PH_Organization or PH_Practitioner or PH_PractitionerRole or or RelatedPerson or Device)~~ **HumanName** | 0..* | --- | --- |
-| Designation | Claim.extension:signature.extension:signaturePosition | ~~CodeableConcept~~ **String** | 0..* | --- | --- |
+| <center>Form Field</center> | <center>Use-Case Mapping<br>/ Target Element</center> | <center>Data Type</center> | <center>Cardinality</center> | <center>ValueSet <br><i>(if any)</i></center> |
+|:---------|:---------|:--------|:--------:|:----------:|
+| Series # | Claim.identifier | Identifier | 0..* | --- |
+| **Part I - Health Care Institution (HCI) Information** | | | | |
+| PhilHealth Accreditation Number (PAN) of Health Care Institution | Claim.provider | Reference([PH_Organization](StructureDefinition-PH-Organization.html)) | 1..1 | --- |
+| <center>►</center> | Organization.identifier | Identifier | 1..1 | --- |
+| Name of Health Care Institution | Claim.provider | Reference([PH_Organization](StructureDefinition-PH-Organization.html)) | 1..1 | --- |
+| <center>►</center> | Organization.name | string | 1..1 | --- |
+| Address (Building Number and Street Name) | Claim.provider | Reference([PH_Organization](StructureDefinition-PH-Organization.html)) | 1..1 | --- |
+| <center>►</center> | Organization.address.line | string | 1..1 | --- |
+| Address (City/Municipality) | Claim.provider | Reference([PH_Organization](StructureDefinition-PH-Organization.html)) | 1..1 | --- |
+| <center>►</center> | Organization.address.extension:cityMunicipality | Coding | 1..1 | [CityMunicipality](ValueSet-CityVS.html) |
+| Address (Province) | Claim.provider | Reference([PH_Organization](StructureDefinition-PH-Organization.html)) | 1..1 | --- |
+| <center>►</center> | Organization.address.extension:province | Coding | 1..1 | [Province](ValueSet-ProvinceVS.html) |
+| **Part II - Patient Confinement Information** | | | | |
+| Name of Patient (Last Name) | Claim.patient | Reference([PH_Patient](StructureDefinition-PH-Patient.html)) | 1..1 | --- |
+| <center>►</center> | Patient.name.family | string | 0..1 | --- |
+| Name of Patient (First Name) | Claim.patient | Reference([PH_Patient](StructureDefinition-PH-Patient.html)) | 1..1 | --- |
+| <center>►</center> | Patient.name.given[**0**] | string | 0..1 | --- |
+| Name of Patient (Name Extension) | Claim.patient | Reference([PH_Patient](StructureDefinition-PH-Patient.html)) | 1..1 | --- |
+| <center>►</center> | Patient.name.suffix | string | 0..* | --- |
+| Name of Patient (Middle Name) | Claim.patient | Reference([PH_Patient](StructureDefinition-PH-Patient.html)) | 1..1 | --- |
+| <center>►</center> | Patient.name.given[**1**] | string | 0..1 | --- |
+| Was Patient reffered by another HCI? (Yes/No) | Claim.referral | Reference([PH_ServiceRequest](StructureDefinition-PH-ServiceRequest.html)) | 0..1 | --- |
+| <center>►</center> | ServiceRequest.status | code | 0..1 | --- |
+| Name of referring Health Care Institution | Claim.referral | Reference([PH_ServiceRequest](StructureDefinition-PH-ServiceRequest.html)) | 0..1 | --- |
+| <center>►</center> | ServiceRequest.requester | Reference([PH_Organization](StructureDefinition-PH-Organization)) | 0..1 | --- |
+| <center>►</center> | <br>Organization.name | string | 0..1 | --- |
+| Address of referring HCI (Building Number and Street Name) | Claim.referral | Reference([PH_ServiceRequest](StructureDefinition-PH-ServiceRequest.html)) | 0..1 | --- |
+| <center>►</center> | ServiceRequest.requester | Reference([PH_Organization](StructureDefinition-PH-Organization)) | 0..1 | --- |
+| <center>►</center> | Organization.address.line | string | 0..1 | --- |
+| Address of referring HCI (City/Municipality) | Claim.referral | Reference([PH_ServiceRequest](StructureDefinition-PH-ServiceRequest.html)) | 0..1 | --- |
+| <center>►</center> | ServiceRequest.requester | Reference([PH_Organization](StructureDefinition-PH-Organization)) | 0..1 | --- |
+| <center>►</center> | Organization.address.extension:cityMunicipality | Coding | 0..1 | --- |
+| Address of referring HCI (Province) | Claim.referral | Reference([PH_ServiceRequest](StructureDefinition-PH-ServiceRequest.html)) | 0..1 | --- |
+| <center>►</center> | ServiceRequest.requester | Reference([PH_Organization](StructureDefinition-PH-Organization)) | 0..1 | --- |
+| <center>►</center> | Organization.address.extension:province | Coding | 0..1 | --- |
+| Address of referring HCI (ZIP Code) | Claim.referral | Reference([PH_ServiceRequest](StructureDefinition-PH-ServiceRequest.html)) | 0..1 | --- |
+| <center>►</center> | ServiceRequest.requester | Reference([PH_Organization](StructureDefinition-PH-Organization)) | 0..1 | --- |
+| <center>►</center> | Organization.address.postalCode | Coding | 0..1 | --- |
+| Confinement Period (**Date Admitted** MM-DD-YYYY)(Time Admitted HH:MM)(AM/PM) | Claim.extension:claimEncounter | Reference([PH_Encounter](StructureDefinition-PH-Encounter.html)) | 0..1 | --- |
+| <center>►</center> | Encounter.period.start | dateTime | --- | --- |
+| Confinement Period (**Date Discharge** MM-DD-YYY)(Time Discharge HH:MM)(AM/PM) | Claim.extension:claimEncounter | Reference([PH_Encounter](StructureDefinition-PH-Encounter.html)) | 0..1 | --- |
+| <center>►</center> | Encounter.period.end | dateTime | --- | --- |
+| Patient Disposition (check notes for options: select only one) | Claim.extension:claimEncounter | Reference([PH_Encounter](StructureDefinition-PH-Encounter.html)) | 0..1 | --- |
+| <center>►</center> | Encounter.hospitalization.dischargeDisposition | CodeableConcept | --- | --- |
+| e. Expired (Date Format MM-DD-YYYY)(Time Format HH-MM)(AM/PM) | Claim.patient | Reference([PH_Patient](StructureDefinition-PH-Patient.html)) | 1..1 | --- |
+| <center>►</center> | Patient.deceasedDateTime | dateTime | 0..1 | --- |
+| f. Transferred/Referred (Name of Referral Health Care Institution) | Claim.referral | Reference([PH_ServiceRequest](StructureDefinition-PH-ServiceRequest.html)) | 0..1 | --- |
+| <center>►</center> | ServiceRequest.performer | Reference([PH_Organization](StructureDefinition-PH-Organization)) | 0..1 | --- |
+| <center>►</center> | Organization.name | string | 0..1 | --- |
+| f. Transferred/Referred HCI Address (Building Number and Street Name) | Claim.referral | Reference([PH_ServiceRequest](StructureDefinition-PH-ServiceRequest.html)) | 0..1 | --- |
+| <center>►</center> | ServiceRequest.performer | Reference([PH_Organization](StructureDefinition-PH-Organization)) | 0..1 | --- |
+| <center>►</center> | Organization.address.line | string | 0..1 | --- |
+| f. Transferred/Referred HCI Address (City/Municipality) | Claim.referral | Reference([PH_ServiceRequest](StructureDefinition-PH-ServiceRequest.html)) | 0..1 | --- |
+| <center>►</center> | ServiceRequest.performer | Reference([PH_Organization](StructureDefinition-PH-Organization)) | 0..1 | --- |
+| <center>►</center> | Organization.address.extension:cityMunicipality | Coding | 0..1 | [CityMunicipality](ValueSet-CityVS.html) |
+| f. Transferred/Referred HCI Address (Province) | Claim.referral | Reference([PH_ServiceRequest](StructureDefinition-PH-ServiceRequest.html)) | 0..1 | --- |
+| <center>►</center> | ServiceRequest.performer | Reference([PH_Organization](StructureDefinition-PH-Organization)) | 0..1 | --- |
+| <center>►</center> | Organization.address.extension:province | Coding | 0..1 | [Province](ValueSet-ProvinceVS.html) |
+| f. Transferred/Referred HCI Address (Postal Code) | Claim.referral | Reference([PH_ServiceRequest](StructureDefinition-PH-ServiceRequest.html)) | 0..1 | --- |
+| <center>►</center> | ServiceRequest.performer | Reference([PH_Organization](StructureDefinition-PH-Organization)) | 0..1 | --- |
+| <center>►</center> | Organization.address.postalCode | Coding | 0..1 | ~~PostalCode~~ |
+| f. Reason/s for referral/transfer **(text)** | Claim.referral | Reference([PH_ServiceRequest](StructureDefinition-PH-ServiceRequest.html)) | 0..1 | --- |
+| <center>►</center> | ServiceRequest.reasonReference | Reference([PH_Observation](StructureDefinition-PH-Observation)) | 0..1 | --- |
+| <center>►</center> | Observation.valueString | string | 0..1 | [ReasonCode](http://hl7.org/fhir/ValueSet/encounter-reason) |
+| f. Reason/s for referral/transfer **(code)** | Claim.referral | Reference([PH_ServiceRequest](StructureDefinition-PH-ServiceRequest.html)) | 0..1 | --- |
+| <center>►</center> | ServiceRequest.reasonReference | Reference([PH_Observation](StructureDefinition-PH-Observation)) | 0..1 | --- |
+| <center>►</center> | Observation.valueString | string | 0..1 | [ReasonCode](http://hl7.org/fhir/ValueSet/encounter-reason) |
+| Type of Accomodation (Private/Non-Private) | Claim.extension:claimEncounter | Reference([PH_Encounter](StructureDefinition-PH-Encounter.html)) | 0..1 | --- |
+| <center>►</center> | Encounter.location.physicalType | CodeableConcept | --- | [Location-PhysicalType](http://hl7.org/fhir/ValueSet/location-physical-type) |
+| **Admission Diagnosis/es** | Claim.diagnosis.diagnosisCodeableConcept | CodeableConcept | 1..1 | --- |
+| Discharge Diagnosis: Diagnosis - ICD-10 Code/s | Claim.diagnosis.diagnosisCodeableConcept | CodeableConcept | 1..1 | --- |
+| Discharge Diagnosis: Related Procedure/s (if there's any) - RVS Code | Claim.procedure.procedureCodeableConcept | CodeableConcept | 1..1 | --- |
+| Discharge Diagnosis: Date of Procedure | Claim.procedure.date | dateTime | 0..1 | --- |
+| Discharge Diagnosis: Laterality (Left, Right, Both) | Claim.procedure.procedureReference | Reference([PH_Procedure](StructureDefinition-PH-Procedure.html)) | 0..1 | --- |
+| <center>►</center> |  Procedure.bodySite | CodeableConcept | 1..1 | --- |
+| 8.a. For the following repetitive procedures, check box that applies and enumerate the procedure/sessions dates [mm-dd-yyyy]. For chemotherapy, see guidelines. | Claim.item.productOrService | CodeableConcept | 1..1 | --- |
+| 8.a. procedure/session dates | Claim.item.servicedDate | date | 0..1 | --- |
+| 8.b. For Z-Benefit Package **Z-Benefit Package Code:** | Claim.item.productOrService | CodeableConcept | 1..1 | --- |
+| 8.c. For MCP Package (enumerate four dates [mm-dd-year] of pre-natal check-ups) | Claim.item.servicedDate | date | 0..1 | --- |
+| 8.d. For TB-DOTS Package | Claim.item.detail.productOrService | CodeableConcept | 1..1 | --- |
+| 8.e. For Animal Bite Package: Day 0 ARV **(Date)** | Claim.item.servicedDate | date | 0..1 | --- |
+| 8.e. For Animal Bite Package: Day 3 ARV **(Date)** | Claim.item.servicedDate | date | 0..1 | --- |
+| 8.e. For Animal Bite Package: Day 7 ARV **(Date)** | Claim.item.servicedDate | date | 0..1 | --- |
+| 8.e. For Animal Bite Package: RIG **(Date)** | Claim.item.servicedDate | date | 0..1 | --- |
+| 8.e. For Animal Bite Package: **Others (Specify)** | Claim.item.productOrService | CodeableConcept | 1..1 | --- |
+| 8.e. For Animal Bite Package: Others (Specify) **(Date)** | Claim.item.servicedDate | date | 0..1 | --- |
+| 8.f. For Newborn Care Package | Claim.item.productOrService | CodeableConcept | 1..1 | --- |
+| 8.f. For Newborn Care Package: **Essential Newborn Care** | Claim.item.detail.productOrService | CodeableConcept | 1..1 | --- |
+| 8.g. For Outpatient HIV/AIDS Treatment Package: **Laboratory Number:** | Claim.item.encounter | Reference([PH_Encounter](StructureDefinition-PH-Encounter.html)) | 0..1 | --- |
+| <center>►</center> | Encounter.serviceProvider | Reference([PH_Organization](StructureDefinition-PH-Organization.html)) | 0..1 | --- |
+| <center>►</center> | Organization.identifier | Identifier | 0..* | --- |
+| 9. PhilHealth Benefits: First Case Rate: | Claim.item.productOrService | CodeableConcept | 1..1 | --- |
+| 9. PhilHealth Benefits: Second Case Rate: | Claim.item.productOrService | CodeableConcept | 1..1 | --- |
+| 10. Accreditation number of Accredited Health Care Professional | Claim.supportingInfo.valueReference | Reference([PH_Practitioner](StructureDefinition-PH-Practitioner.html)) | 0..1 | --- |
+| <center>►</center> |  Practitioner.identifier | Identifier | 0..1 | --- |
+| 10. Name of Accredited Health Care Professional | Claim.supportingInfo.valueReference | Reference([PH_Provenance](StructureDefinition-PH-Provenance.html)) | 0..1 | --- |
+| <center>►</center> | Provenance.signature.who | ([PH_Practitioner](StructureDefinition-PH-Practitioner.html)) | 1..1 | --- |
+| <center>►</center> | Practitioner.name | <br><br>HumanName | 0..1 | --- |
+| 10. Signature Over Printed Name (Name of Accredited Health Care Professional) | Claim.supportingInfo.valueReference | Reference([PH_Provenance](StructureDefinition-PH-Provenance.html)) | 0..1 | --- |
+| <center>►</center> | Provenance.signature.data | base64Binary | 0..1 | --- |
+| 10. Date Signed | Claim.supportingInfo.valueReference | Reference([PH_Provenance](StructureDefinition-PH-Provenance.html)) | 0..1 | --- |
+| <center>►</center> | Provenance.signature.when | instant | 0..1 | --- |
+| Details: Co-Pay | Claim.insurance.coverage | Reference([PH_Coverage](StructureDefinition-PH-Coverage.html)) | 1..1 | --- |
+| <center>►</center> | Coverage.costToBeneficiary.type | CodeableConcept | 0..1 | --- |
+| With co-pay on top of PhilHealth Benefit **(Amount)** | Claim.insurance.coverage | Reference([PH_Coverage](StructureDefinition-PH-Coverage.html)) | 1..1 | --- |
+| <center>►</center> | Coverage.costToBeneficiary.valueMoney | Money | --- | --- |
+| **Part III - Certification of Consumption of Benefits and Consent to Access Patient Record/s** | | | | |
+| A. Certification of Consumption of Benefits | Questionnaire.item.text | string | 0..1 | --- |
+| A. if Yes, Total Health Care Institution Fees : Total Actual Charges* | Claim.item.net | Money | 0..1 | --- |
+| A. if Yes, Total Professional Fees : Total Actual Charges* | Claim.item.net | Money | 0..1 | --- |
+| A. if Yes, Grand Total : Total Actual Charges* | Claim.total | Money | 0..1 | --- |
+| A. if No, Total Health Care Institution Fees : Total Actual Charges* | Claim.item.net | Money | 0..1 | --- |
+| A. if No, Total Health Care Institution Fees : Amount after Application of Discount (i.e., personal discount, Senior Citizen / PWD) | Claim.item.detail.net | Money | 0..1 | --- |
+| A. if No, Total Health Care Institution Fees : PhilHealth Benefit | Claim.item.net | Money | 0..1 | --- |
+| A. if No, Total Health Care Institution Fees : Amount after PhilHealth Deduction **(Amount)** | Claim.total | Money | 0..1 | --- |
+| A. if No, Total Health Care Institution Fees : Amount after PhilHealth Deduction **(Paid by (check all that applies))** | Claim.insurance.coverage | Reference([PH_Coverage](StructureDefinition-PH-Coverage.html)) | 1..1 | --- |
+| <center>►</center> | Coverage.type | CodeableConcept | --- | --- |
+| A. if No, Total Professional Fees (for accredited and non-accredited professionals) : Total Actual Charges* | Claim.item.net | Money | 0..1 | --- |
+| A. if No, Total Professional Fees (for accredited and non-accredited professionals) : Amount after Application of Discount (i.e., personal discount, Senior Citizen / PWD) | Claim.item.detail.net | Money | 0..1 | --- |
+| A. if No, Total Professional Fees (for accredited and non-accredited professionals) : PhilHealth Benefit | Claim.item.net | Money | 0..1 | --- |
+| A. if No, Total Professional Fees (for accredited and non-accredited professionals) : Amount after PhilHealth Deduction **(Amount)** | Claim.total | Money | 0..1 | --- |
+| A. if No, Total Professional Fees (for accredited and non-accredited professionals) : Amount after PhilHealth Deduction **(Paid by (check all that applies))** | Claim.insurance.coverage | Reference([PH_Coverage](StructureDefinition-PH-Coverage.html)) | 1..1 | --- |
+| <center>►</center> | Coverage.type | CodeableConcept | --- | --- |
+| A. if No, Total cost of purchase/s for drugs/medicines and/or medical supplies bought by the patient/member within/outside the HCI during confinement | Claim.insurance.coverage | Reference([PH_Coverage](StructureDefinition-PH-Coverage.html)) | 1..1 | --- |
+| <center>►</center> | Coverage.costToBeneficiary.type | CodeableConcept | --- | --- |
+| A. if No, Total cost of purchase/s for drugs/medicines and/or medical supplies bought by the patient/member within/outside the HCI during confinement (Total Amount) | Claim.insurance.coverage | Reference([PH_Coverage](StructureDefinition-PH-Coverage.html)) | 1..1 | --- |
+| <center>►</center> | Coverage.costToBeneficiary.valueMoney | Money | --- | --- |
+| A. if No, Total cost of diagnostic/laboratory examinations paid by the patient/member done within/outside the HCI during confinement | Claim.insurance.coverage | Reference([PH_Coverage](StructureDefinition-PH-Coverage.html)) | 1..1 | --- |
+| <center>►</center> | Coverage.costToBeneficiary.type | CodeableConcept | --- | --- |
+| A. if No, Total cost of diagnostic/laboratory examinations paid by the patient/member done within/outside the HCDI during confinement **(Total Amount)** | Claim.insurance.coverage | Reference([PH_Coverage](StructureDefinition-PH-Coverage.html)) | 1..1 | --- |
+| <center>►</center> | Coverage.costToBeneficiary.valueMoney | Money | --- | --- |
+| B. Signature Over **Printed Name** of Member/**Patient**/Authorized Representative | Provenance.signature.who | Reference([PH_Patient](StructureDefinition-PH-Patient.html)) | 0..1 | --- |
+| <center>►</center> | Patient.name | HumanName | 0..1 | --- |
+| B. **Signature** Over Printed Name of Member/**Patient**/Authorized Representative | Provenance.signature.data | base64Binary | 0..1 | --- |
+| B. Signature Over **Printed Name** of **Member**/Patient/**Authorized Representative** | Provenance.signature.who | Reference([PH_RelatedPerson](StructureDefinition-PH-RelatedPerson.html)) | 1..1 | --- |
+| <center>►</center> | RelatedPerson.name | HumanName | 0..1 | --- |
+| B. **Signature** Over Printed Name of **Member**/Patient/**Authorized Representative** | Provenance.signature.data | base64Binary | 0..1 | --- |
+| B. Date Signed: | Provenance.signature.when | instant | 0..1 | --- |
+| B. Relationship of the representative to the member/patient | Provenance.signature.who | Reference([PH_RelatedPerson](StructureDefinition-PH-RelatedPerson.html)) | 1..1 | --- |
+| <center>►</center> | RelatedPerson.relationship | CodeableConcept | --- | --- |
+| B. Reason for signing on behalf of the member/patient | Provenance.signature.extension:signatureReason | string | 0..1 | --- |
+| B. If patient/representative is unable to write, put right **thumbmark**. Patient/Representative should be assisted by an HCI representative. | Provenance.signature.data | base64Binary | 0..1 | --- |
+| **Part IV - Certification of Consumption of Health Care Institution** | | | | |
+| Signature Over **Printed Name of Authorized HCI Representative** | Provenance.signature.who | Reference([PH_Practitioner](StructureDefinition-PH-Practitioner.html)) | 0..1 | --- |
+| <center>►</center> | Practitioner.name | HumanName | 0..1 | --- |
+| **Signature** Over Printed Name **of Authorized HCI Representative** | Provenance.signature.data | base64Binary | 0..1 | --- |
+| Official Capacity / Designation | Provenance.signature.extension:signaturePosition | CodeableConcept | 0..* | --- |
+| Date Signed: | Provenance.signature.when | instant | 0..1 | --- |
