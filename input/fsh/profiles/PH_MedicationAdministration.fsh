@@ -14,7 +14,7 @@ Description: "Describes the event of a patient consuming or otherwise being admi
 * text ..0
 * contained ..0
 * extension contains
-    MedicationEncounter named medicationEncounter 0..*
+    EncounterExtension named medicationEncounter 0..*
 * modifierExtension ..0
 // * identifier ..0
 * instantiates ..0

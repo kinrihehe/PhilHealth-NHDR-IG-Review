@@ -12,7 +12,7 @@ Description: "A record of a medication that is being consumed by a patient."
 * text ..0
 * contained ..0
 * extension contains
-    MedicationEncounter named medicationEncounter 0..*
+    EncounterExtension named medicationEncounter 0..*
 * modifierExtension ..0
 // * identifier ..0
 * basedOn ..0
