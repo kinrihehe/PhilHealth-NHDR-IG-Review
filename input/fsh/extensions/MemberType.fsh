@@ -1,8 +1,8 @@
 Extension: MemberType
 Id: MemberType
-Title: "Membership Type"
+Title: "Member Type"
 Context: Patient
-Description: "Membership Type"
+Description: "Member Type"
 * ^url = "https://nhdr.gov.ph/fhir/StructureDefinition/MemberType"
 * insert MetaData
 * value[x] only CodeableConcept

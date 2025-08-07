@@ -17,3 +17,5 @@ Description: "The signature of an individual."
 * type from $SignatureTypeVS (required)
 * who only Reference(PH_Patient or PH_Organization or PH_Practitioner or PH_PractitionerRole or PH_RelatedPerson or Device)
 * onBehalfOf only Reference(PH_Patient or PH_Organization or PH_Practitioner or PH_PractitionerRole or PH_RelatedPerson or Device)
+* sigFormat ..0
+* targetFormat ..0

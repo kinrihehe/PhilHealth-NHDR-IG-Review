@@ -71,6 +71,18 @@ pages:
       title: Mapping of Claims Form 2 to FHIR
     CF2-json.md:
       title: Sample CF2 Bundle
+  CF3.md:
+    title: Claims Form 3
+    CF3-mapping.md:
+      title: Mapping of Claims Form 3 to FHIR
+    CF3-json.md:
+      title: Sample CF3 Bundle
+  CF4.md:
+    title: Claims Form 4
+    CF4-mapping.md:
+      title: Mapping of Claims Form 4 to FHIR
+    CF4-json.md:
+      title: Sample CF4 Bundle
 #   implementation.xml:
 #   examples.xml:
 #     title: Examples Overview
@@ -90,7 +102,10 @@ pages:
 # parameters:
 #   path-resource:
 #     # - input/predefined-resources
-#     - input/predefined-jsons
+#     # - input/predefined-jsons
+#     - input/usecases
+#     - input/usecases/CF1
+#     - input/usecases/CF2
 #   excludettl: true
 #   validation: [allow-any-extensions, no-broken-links]
 #
@@ -239,7 +254,6 @@ groups:
     name: Financial Profiles
     resources:
     - StructureDefinition/PH-Claim
-    - StructureDefinition/PH-ClaimResponse
     - StructureDefinition/PH-Coverage
     - StructureDefinition/PH-EnrollmentRequest
 
