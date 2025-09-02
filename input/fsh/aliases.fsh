@@ -24,7 +24,9 @@ Alias: $SignatureThumbmark = https://nhdr.gov.ph/fhir/StructureDefinition/Signat
 // Alias: $ConditionCategoryCS = http://terminology.hl7.org/CodeSystem/condition-category //Deleted, created direct valueset
 // Alias: $ConditionClinicalStatusCS = http://terminology.hl7.org/CodeSystem/condition-clinical|4.0.1 //Deleted, created direct valueset
 // Alias: $ConditionSeverityCS = http://terminology.hl7.org/CodeSystem/v2-0421 //Deleted, created direct valueset
-// Alias: $ConditionVerificationStatusCS = http://terminology.hl7.org/CodeSystem/condition-ver-status
+// Alias: $ConditionVerificationStatusCS = http://terminology.hl7.org/CodeSystem/condition-ver-
+Alias: $CaseRateProcedureCS = https://www.philhealth.gov.ph/circulars/2024/0037/AnnexB-ListofProcedureCaseRates.pdf
+Alias: $CaseRateMedicalCS = https://www.philhealth.gov.ph/circulars/2024/0037/AnnexA-ListofMedicalCaseRates.pdf
 Alias: $ContactEntityTypeCS = http://terminology.hl7.org/CodeSystem/contactentity-type
 // Alias: $RelationshipTypeCS = http://terminology.hl7.org/CodeSystem/v2-0131 //Deleted, created direct valueset
 Alias: $CoverageClassCS = http://terminology.hl7.org/CodeSystem/coverage-class
@@ -51,6 +53,7 @@ Alias: $LOINC = http://loinc.org
 Alias: $MemberCategoryCS = https://nhdr.gov.ph/fhir/CodeSystem/MemberCategoryCS
 Alias: $MemberTypeCS = https://nhdr.gov.ph/fhir/CodeSystem/MemberTypeCS
 Alias: $NHFRCS = https://nhfr.doh.gov.ph/VActivefacilitiesList
+Alias: $NationalityCS = https://nhdr.gov.ph/fhir/CodeSystem/NationalityCS
 Alias: $NullFlavorCS =  http://terminology.hl7.org/CodeSystem/v3-NullFlavor
 // Alias: $ObservationCategoryCS = http://terminology.hl7.org/CodeSystem/observation-category //Deleted, created direct valueset 
 // Alias: $ObservationInterpretationCS = http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation //Deleted, created direct valueset 
@@ -99,10 +102,13 @@ Alias: $YesNoVS = http://terminology.hl7.org/ValueSet/v2-0136
 
 
 // Updated Valuesets
+Alias: $CaseRateProcedureVS = https://nhdr.gov.ph/fhir/ValueSet/CaseRateProcedureVS
+Alias: $CaseRateMedicalVS = https://nhdr.gov.ph/fhir/ValueSet/CaseRateMedicalVS
+Alias: $NationalityVS = https://nhdr.gov.ph/fhir/ValueSet/NationalityVS
 Alias: $AllergyIntoleranceCategoryVS = http://hl7.org/fhir/allergy-intolerance-category
 Alias: $AllergyIntoleranceClinicalStatusVS = http://terminology.hl7.org/ValueSet/allergyintolerance-clinical // Deleted fsh file
 Alias: $AllergyIntoleranceReactionSeverityVS = http://hl7.org/fhir/reaction-event-severity 
-Alias: $AppointmentStatusVS = http://hl7.org/fhir/ValueSet/appointmentstatus|4.0.1 // check the local references and the forms, as the forms only use Y or N
+Alias: $AppointmentStatusVS = http://hl7.org/fhir/ValueSet/appointmentstatus|4.0.1 // check the local references and the forms, as the forms only use Y or No
 Alias: $ConditionCategoryVS = http://hl7.org/fhir/ValueSet/condition-category //  Deleted fsh file and CodeSystem in Aliases, direct bind to FHIR Valueset
 Alias: $ConditionClinicalStatusVS = http://hl7.org/fhir/ValueSet/condition-clinical
 Alias: $ConditionSeverityVS = http://terminology.hl7.org/ValueSet/v2-0421 //Deleted CS and VS fsh file

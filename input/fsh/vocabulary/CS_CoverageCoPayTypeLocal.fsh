@@ -1,7 +1,7 @@
 CodeSystem: CoverageCopayTypeLocalCS
 Id: CoverageCopayTypeLocalCS
 Title: "Coverage Co-Payment Type - Local"
-Description: "Representing the additional local codes of Coverage Co-Payment Type"
+Description: "This code system representing the additional local codes of Coverage Co-Payment Type"
 * ^url = "https://nhdr.gov.ph/fhir/CodeSystem/CoverageCopayTypeLocalCS"
 * insert MetaData
 * ^content = #complete
